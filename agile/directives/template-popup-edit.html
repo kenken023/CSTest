@@ -1,0 +1,15 @@
+<div class="popup-wrapper" ng-show="isPopupVisible" ng-click="closePopup($event)">
+	<div class="popup-container editor" ng-click="$event.stopPropagation()">
+		<label>Title</label>
+		<textarea ng-model="title" class="form-control" rows="3"></textarea>
+		<label>Card Color</label>
+		<select ng-model="color" class="form-control">
+			<option value="#ffffff" selected="selected">White</option>
+			<option value="#5bc0de">Blue</option>
+			<option value="#d9534f">Red</option>
+			<option value="#449d44">Green</option>
+			<option value="#ec971f">Yellow</option>
+		</select>
+		<button ng-click="save()" class="btn btn-default">Save</button>
+	</div>
+</div>

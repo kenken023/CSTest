@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-ui.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/sortable.js"></script>
+
+        <script src="app.js"></script>
+        <script src="directives/myDirective.js"></script>
+        <script src="services/storageService.js"></script>
+        <script src="services/eventHandlerService.js"></script>
+        <script src="controller/agileController.js"></script>
+    </head>
+    <body>
+        <div ng-app="agileApp" ng-controller="agileController" class="container-fluid" ng-init="init()">
+            <h1>Agile Board</h1>
+            <hr />
+            <br />
+            <br />
+
+            <p>
+                <button class="btn btn-danger btn-lg" ng-click="clearBoard()">Clear All</button>
+                <button class="btn btn-primary btn-lg pull-right" ng-click="showMessagePopup()">Show Message</button>
+            </p>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <blockquote>Backlog</blockquote>
+                    <div class=""><button class="btn btn-link" ng-click="addCard(1)">Add Card</button></div>
+                    <div ui-sortable="sortableOptions" class="apps-container screen" ng-model="list1">
+                        <div class="app" ng-repeat="card in list1 track by $index" ng-style="{'background-color': card.color}">
+                            <div class="card-directive" list-name="list1"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="col-spacer">
+                        <blockquote>In Progress</blockquote>
+                        <div class=""><button class="btn btn-link" ng-click="addCard(2)">Add Card</button></div>
+                        <div ui-sortable="sortableOptions" class="apps-container screen" ng-model="list2">
+                            <div class="app" ng-repeat="card in list2 track by $index" ng-style="{'background-color': card.color}">
+                                <div class="card-directive" list-name="list2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <blockquote>Done</blockquote>
+                    <div class=""><button class="btn btn-link" ng-click="addCard(3)">Add Card</button></div>
+                    <div ui-sortable="sortableOptions" class="apps-container screen" ng-model="list3">
+                        <div class="app" ng-repeat="card in list3 track by $index" ng-style="{'background-color': card.color}">
+                            <div class="card-directive" list-name="list3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="row col-md-12" style="margin: 30px 0; padding: 0;">
+                <p class=""><button ng-click="purgeTrashBox()" class="btn btn-danger btn-lg">Empty Trash Box</button></p>
+                <blockquote>Trash Box</blockquote>            
+                <div id="trash-box" class="list" ui-sortable="sortableOptionsTrash" ng-model="trashList">
+                    <div class="app item" ng-repeat="card in trashList track by $index" ng-style="{'background-color': card.color}">
+                        <div class="card-directive"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="quick-editor-directive"></div>
+            <div class="popup-message-directive">
+                <blockquote><b>Welcome to Agile board!</b></blockquote>
+                <p>
+                    This is an interactive board for Agile development.
+                </p>
+                <br />
+                <p>
+                    <b>How to use:</b><br />
+                    <ul>
+                        <li>Add cards using "Add Card" button</li>
+                        <li>Drag and drop cards to any of the three columns to change the status</li>
+                        <li>Hovering a card shows option icons that has the following:</li>
+                            <ul>
+                                <li>Delete a card</li>
+                                <li>Edit the card's title and color</li>
+                            </ul>
+                        <li>Deleted card goes directly to "Trash Box" section</li>
+                        <li>Deleted card can be recycled by draging to any column</li>
+                        <li>To delete all card(s) in the columns, simply press "Clear All" button</li>
+                        <li>To permanently delete card(s) in the Trash Box, press "Empty Trash Box" button</li>
+                    </ul>
+                </p>
+            </div>
+    </body>
+</html>

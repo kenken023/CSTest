@@ -1,0 +1,7 @@
+<div class="popup-wrapper popup-message" ng-show="isPopupVisible" ng-click="closePopup($event)">
+	<div class="popup-container" ng-click="$event.stopPropagation()">
+		<div ng-transclude></div>
+
+        <button ng-click="closePopup()" type="button" class="btn btn-primary">CLOSE</button>
+	</div>
+</div>

@@ -1,0 +1,9 @@
+<div class="card-container">
+	<button type="button" class="close display-none" aria-label="Close" ng-click="deleteCard(listName, $index)">
+		<span aria-hidden="true">&times;</span>
+	</button>
+    <span class="close edit display-none" ng-click="editItem(listName, $index)">
+    	<img ng-src="img/pencil.png" width="13" height="13" />
+    </span>
+    <span ng-bind="card.title"></span>
+</div>

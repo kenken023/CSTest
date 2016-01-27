@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-ui.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/sortable.js"></script>
+        <style type="text/css">
+        .ab {
+            list-style: none;
+            height: 300px;
+            margin: 10px;
+        }
+
+        .ab .cd {
+            float: left;
+            list-style: none;
+            width: 100px;
+            border: 1px solid red;
+            margin-left: 3px;
+        }
+        </style>
+        <script type="text/javascript">
+            var myAppModule = angular.module('SampleApp', ['ui.sortable']);
+            myAppModule.controller('MyController', function($scope) {
+                $scope.items = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"];
+
+                $scope.sortableOptions = {
+                    update: function(e, ui) {
+
+                    }
+                };
+            });
+        </script>
+    </head>
+    <body ng-app="SampleApp" ng-controller="MyController">
+        <div class="ab" ui-sortable="sortableOptions" ng-model="items">
+            <div class="cd" ng-repeat="item in items track by $index">{{ item }}</div>
+        </div>
+    </body>
+</html>
